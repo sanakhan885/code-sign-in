@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #0b0b0b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      background-color: #f4f4f4;
+      width: 100%;
+      max-width: 820px;
+      border-radius: 20px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Left Form Section */
+    .form-section {
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .form-section h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .form-section h1 span {
+      color: #b73b3b;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 22px;
+    }
+
+    .google-btn {
+      width: 100%;
+      max-width: 290px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      background: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #111;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .google-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.16);
+    }
+
+    .divider {
+      width: 100%;
+      max-width: 260px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0;
+      color: #222;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: #999;
+    }
+
+    form {
+      width: 100%;
+      max-width: 290px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 11px 42px 11px 18px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      background-color: #fff;
+      font-size: 0.85rem;
+      color: #222;
+      outline: none;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+      transition: border-color 0.2s ease;
+    }
+
+    .input-group input::placeholder {
+      color: #888;
+    }
+
+    .input-group input:focus {
+      border-color: #7b1414;
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #222;
+      padding-left: 6px;
+      margin-top: 2px;
+    }
+
+    .remember-row input[type="checkbox"] {
+      accent-color: #7b1414;
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    .signin-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(180deg, #8b1c1c 0%, #680f0f 100%);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      box-shadow: 0 4px 10px rgba(104, 15, 15, 0.35);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .signin-btn:hover {
+      opacity: 0.94;
+      transform: translateY(-1px);
+    }
+
+    .signup-text {
+      margin-top: 12px;
+      font-size: 0.72rem;
+      color: #444;
+    }
+
+    .signup-text a {
+      color: #7b1414;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .signup-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Right Image Section */
+    .visual-section {
+      width: 100%;
+      height: 100%;
+      min-height: 410px;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      background: radial-gradient(circle at 60% 65%, #6e1c24 0%, #2a090d 55%, #0c0304 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Replace this background with your exact exported Figma image */
+    .visual-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 720px) {
+      .login-card {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+
+      .visual-section {
+        min-height: 220px;
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <!-- Left Column: Form -->
+    <div class="form-section">
+      <h1><span>Welcome</span> Back</h1>
+      <p class="subtitle">Please enter your detail</p>
+
+      <button type="button" class="google-btn">Login with Google</button>
+
+      <div class="divider">or</div>
+
+      <form id="loginForm">
+        <!-- Email Field -->
+        <div class="input-group">
+          <input type="email" placeholder="Email" required />
+          <span class="input-icon" aria-hidden="true">
+            <!-- Gmail-style M Icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6.5L12 13L21 6.5V18C21 18.55 20.55 19 20 19H4C3.45 19 3 18.55 3 18V6.5Z" stroke="#EA4335" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M3 6.5L12 13L21 6.5" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Password Field -->
+        <div class="input-group">
+          <input type="password" id="passwordInput" placeholder="password" required />
+          <button type="button" class="input-icon" id="togglePassword" aria-label="Toggle password visibility">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Remember Me -->
+        <label class="remember-row">
+          <input type="checkbox" />
+          <span>Remember for 30 days</span>
+        </label>
+
+        <!-- Submit Button -->
+        <button type="submit" class="signin-btn">Sign In</button>
+      </form>
+
+      <p class="signup-text">
+        Don't have an account <a href="#">sign up</a>
+      </p>
+    </div>
+
+    <!-- Right Column: Visual Card -->
+    <div class="visual-section">
+      <!-- Apni Figma ribbon image export kar ke yahan src mein lagayein -->
+      <img src="ribbon-bg.jpg" alt="Red ribbon graphic" onerror="this.style.display='none'" />
+    </div>
+  </div>
+
+  <script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('passwordInput');
+
+    togglePassword.addEventListener('click', () => {
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Form submitted!');
+    });
+  </script>
+
+</body>
+</html>
